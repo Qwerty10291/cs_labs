@@ -40,7 +40,7 @@ public class Task6
             {
                 return c;
             }
-            else if (fa * fc < 0)
+            else if (fa * fc < 0) 
             {
                 b = c;
                 fb = fc;
@@ -57,6 +57,6 @@ public class Task6
 
     static double f(double x)
     {
-        return Math.Log10(x * x - 3 * x + 2) / Math.Log10(2);
+        return Math.Log10(x * x - 3 * x + 2);
     }
 }
