@@ -2,7 +2,7 @@ namespace cs_labs.lab1;
 using System;
 
 public class Task7 {
-    static void Main(string[] args) {
+    public static void Run(string[] args) {
         Console.Write("Введите длину массива: ");
         int n = int.Parse(Console.ReadLine());
 

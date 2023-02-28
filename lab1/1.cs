@@ -4,7 +4,7 @@ using System;
 
 class Task1
 {
-    static void Main(string[] args)
+    public static void Run(string[] args)
     {
         Console.Write("Введите ваше имя: ");
         string name = Console.ReadLine();

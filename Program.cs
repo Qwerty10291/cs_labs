@@ -1,3 +1,4 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using cs_labs.lab3;
 
-Console.WriteLine("Hello, World!");
+Test.Run();

@@ -3,7 +3,7 @@ namespace cs_labs.lab1;
 
 class Task4
 {
-    static void Main(string[] args)
+    public static void Run(string[] args)
     {
         int n;
         Console.Write("Введите количество чисел: ");

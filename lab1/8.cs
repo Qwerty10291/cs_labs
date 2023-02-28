@@ -2,7 +2,7 @@ namespace cs_labs.lab1;
 using System;
 
 public class Task8 {
-    static void Main() {
+    public static void Run() {
         int[] array = new int[70];
 
         // Заполнение массива случайными числами

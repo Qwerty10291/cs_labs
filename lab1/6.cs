@@ -3,7 +3,7 @@ using System;
 
 public class Task6
 {
-    static void Main(string[] args)
+    public static void Run(string[] args)
     {
         double a = 0;
         double b = 0.9;

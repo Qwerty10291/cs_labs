@@ -2,7 +2,7 @@ namespace cs_labs.lab2_ind;
 
 public class Tasks
 {
-    static void Task1()
+    public static void Task1()
     {
         // Ввести данные первой фигуры с клавиатуры
         Console.WriteLine("Введите данные для первой фигуры:");
@@ -44,7 +44,7 @@ public class Tasks
         }
     }
     
-    static void Task2()
+    public static void Task2()
     {
         // Запросить у пользователя количество фигур
         Console.Write("Введите количество фигур: ");

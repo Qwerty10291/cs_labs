@@ -3,7 +3,7 @@ using System;
 
 public class Task5
 {
-    static void Main(string[] args)
+    public static void Run(string[] args)
     {
         Console.Write("Введите целое неотрицательное число: ");
         int n = int.Parse(Console.ReadLine());

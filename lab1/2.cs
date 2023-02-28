@@ -6,7 +6,7 @@ public class Task2
     const double CHARKA_TO_LITER = 0.123;
     const double SHKALIK_TO_LITER = 0.06;
 
-    static void Main(string[] args)
+    public static void Run(string[] args)
     {
         Console.Write("Введите имя первого человека: ");
         string person1Name = Console.ReadLine();

@@ -3,7 +3,7 @@ using System;
 
 public class Task3
 {
-    static void Main(string[] args)
+    public static void Run(string[] args)
     {
         Console.Write("Введите дату своего рождения в формате дд.мм.гггг: ");
         DateTime birthDate = DateTime.ParseExact(Console.ReadLine(), "dd.MM.yyyy", null);

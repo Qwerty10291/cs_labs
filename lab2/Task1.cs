@@ -84,7 +84,7 @@ using System;
 
 public class Task1
 {
-    static void Main(string[] args)
+    public static void Run(string[] args)
     {
         Console.WriteLine("Введите количество людей:");
         int n = int.Parse(Console.ReadLine());

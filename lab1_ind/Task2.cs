@@ -2,7 +2,7 @@ namespace cs_labs.lab1_ind;
 
 public class Task2
 {
-    static void Main(string[] args)
+     public static void Run(string[] args)
     {
 
         double h1 = ReadPositiveDouble("Введите высоту первого цилиндра: ");
