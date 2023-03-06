@@ -3,9 +3,9 @@ namespace cs_labs.lab3;
 using System;
 using System.Linq;
 
-class Vector
+public class Vector
 {
-    private double[] data;
+    protected double[] data;
 
     public double[] Data
     {
@@ -22,7 +22,7 @@ class Vector
     {
         this.data = data;
     }
-
+    
     public Vector(Vector other)
     {
         data = (double[])other.data.Clone();
