@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using cs_labs.lab2_ind;
+using cs_labs.lab10;
+using Task = cs_labs.lab10.Task;
 
-Tasks.Task1();
+Task.Task2();
