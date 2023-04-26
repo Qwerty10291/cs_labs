@@ -28,8 +28,16 @@ public class Task
         {
             Tabulate(-2 * Math.PI, 2 * Math.PI, Math.PI / 6, func);
         }
-        
-        
+    }
+
+    public static void Task2()
+    {
+        var fa1 = (string a) =>  a.All(x => !Char.IsUpper(x));
+        var fa2 = (string a) => a.Take(a.Length / 2).SequenceEqual(a.TakeLast(a.Length / 2));
+        var fb1 = (string a) => a.Length == 10;
+        var fb2 = (string a) => a.Split().Where(x => x.Length == 5);
+        var fc1 = (string a) => a.Split().Where(x => x.First() == 'W');
+        var fc2 = (string a) => a.Split();
     }
     
     public static void Tabulate(double a, double b, double step, Func<double, double> func)
@@ -45,7 +53,7 @@ public class Task
         int c = 0;
         for (double x = a; x <= b; x += step)
         {
-            c += filter(x) ? 1 : 0;
+            c += filter(func(x)) ? 1 : 0;
         }
 
         return c;
@@ -57,4 +65,5 @@ public class Task
             .Select(k => Math.Pow(x / (Math.PI * k) - 1, 2))
             .Aggregate((d, d1) => d + d1);
     }
+
 }

@@ -20,7 +20,6 @@ public class Task
         Console.WriteLine("b) сумма: {0}, максимальное: {1}, индекс максмального: {2}", nums.Sum(), nums.Max(), Array.IndexOf(nums, maxNum));
         // c
         regex = new Regex(@"[\+\-]?\d+[,\.]?\d+");
-        nums = regex.Matches(s).Select();
     }
 
 }

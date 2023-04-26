@@ -1,18 +1,109 @@
-using cs_labs.lab3;
 namespace cs_labs.lab3_ind;
 
-public class Task: Vector
+public class NewVector
 {
-    public double  GetByIndex(int i)
+    private double[] data;
+
+    public double[] Data
+    {
+        get => data;
+        set => data = value;
+    }
+
+    public NewVector(int n)
+    {
+        data = new double[n];
+    }
+
+    public NewVector(params double[] data)
+    {
+        this.data = data;
+    }
+    
+    public NewVector(NewVector other)
+    {
+        data = (double[])other.data.Clone();
+    }
+
+    public static NewVector FromConsoleInput()
+    {
+        Console.WriteLine("Введите элементы вектора через пробел:");
+        var input = Console.ReadLine();
+        var data = input.Split().Select(double.Parse).ToArray();
+        return new NewVector(data);
+    }
+
+    public override string ToString()
+    {
+        return $"({string.Join(", ", data)})";
+    }
+
+    public double Magnitude()
+    {
+        return Math.Sqrt(data.Select(x => x * x).Sum());
+    }
+
+    public double Max()
+    {
+        return data.Max();
+    }
+
+    public int MinIndex()
+    {
+        return Array.IndexOf(data, data.Min());
+    }
+
+    public NewVector PositiveOnly()
+    {
+        return new NewVector(data.Where(x => x > 0).ToArray());
+    }
+
+    public static NewVector Add(NewVector a, NewVector b)
+    {
+        if (a.data.Length != b.data.Length)
+        {
+            throw new ArgumentException("Векторы должны иметь одинаковую длину.");
+        }
+
+        var result = new NewVector(a.data.Length);
+        for (int i = 0; i < result.data.Length; i++)
+        {
+            result.data[i] = a.data[i] + b.data[i];
+        }
+        return result;
+    }
+
+    public static double Dot(NewVector a, NewVector b)
+    {
+        if (a.data.Length != b.data.Length)
+        {
+            throw new ArgumentException("Векторы должны иметь одинаковую длину.");
+        }
+
+        return a.data.Zip(b.data, (x, y) => x * y).Sum();
+    }
+
+    public bool Equal(NewVector b)
+    {
+        if (data.Length != b.data.Length)
+        {
+            return false;
+        }
+
+        return data.SequenceEqual(b.data);
+    }
+    
+    public double GetValue(int i)
     {
         return this.data[i];
     }
 
-    public void SetByindex(int i, double value)
+    public void SetValue(int i, double value)
     {
         this.data[i] = value;
     }
-
+    
+    
     public void FillRandom(int a, int b)
     {
         Random rnd = new Random();
@@ -171,9 +262,7 @@ public class Task: Vector
         
         for (int i = n - 1; i >= 0; i--)
         {
-            
             (this.data[0], this.data[i]) = (this.data[i], this.data[0]);
-
             HeapSortHeapify(this.data, i, 0);
         }
     }
@@ -238,8 +327,8 @@ public class Task: Vector
     
     public  void ShiftArrayLeft(int shiftBy)
     {
-        int n = this.data.Length;
-        shiftBy = shiftBy % n;
+        int n = data.Length;
+        shiftBy %= n;
         ShiftArrayLeftReverse(this.data, 0, shiftBy - 1);
         ShiftArrayLeftReverse(this.data, shiftBy, n - 1);
         ShiftArrayLeftReverse(this.data, 0, n - 1);

@@ -42,10 +42,9 @@ public class Task
             );
         var file3Nums = File.ReadAllText("lab10/basedir/data/dataset_3.txt").
             Split(" ")
-            .Select(s => int.Parse(n))
+            .Select(s => int.Parse(s))
             .Where(n => n < 9999)
             ;
-        File.OpenWrite("lab10/basedir/data/res_3.txt").Write();
     }
     
     private static void printAllEmptyDirs(DirectoryInfo root)
