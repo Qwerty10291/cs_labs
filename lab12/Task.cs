@@ -57,6 +57,17 @@ public class Task
             }
         }
     }
+
+    public static void Task3b(string path)
+    {
+        Queue<string> queue = new();
+        foreach (var line in File.ReadLines(path))
+        {
+            queue.Enqueue(line);
+        }
+        ShiftQueueByMax(queue);
+        Console.WriteLine(queue.Peek());
+    }
     
     private static int ValidateBrackets(Dictionary<char, char> pairs, string data)
     {

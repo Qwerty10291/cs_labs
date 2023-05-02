@@ -1,6 +1,8 @@
+using System.Collections;
+
 namespace cs_labs.lab12;
 
-public class Queue<T>
+public class Queue<T> : IEnumerable<T>
 {
     private Node<T> front;
     private Node<T> rear;
@@ -82,5 +84,19 @@ public class Queue<T>
     {
         return front == null;
     }
-    
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        var p = front;
+        while (p != null)
+        {
+            yield return p.item;
+            p = p.next;
+        }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 }
