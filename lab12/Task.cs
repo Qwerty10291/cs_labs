@@ -1,10 +1,31 @@
 namespace cs_labs.lab12;
 
+
 public class Task
 {
-    
-    
-    public static void Task2()
+    internal class StringLengthComparer : Comparer<(String, int)>
+    {
+        public override int Compare((string, int) x, (string, int) y)
+        {
+            return y.Item1.Length.CompareTo(x.Item1.Length);
+        }
+    }
+    public static void Task1(string path)
+    {
+        OrderedStack<(string, int), StringLengthComparer> stack = new(new StringLengthComparer());
+        var i = 0;
+        foreach (var line in File.ReadLines(path))
+        {
+            stack.Push((line, ++i));
+        }
+        Console.WriteLine();
+        foreach (var (index, line) in stack)
+        {
+            Console.WriteLine("{0}) {1}", index, line);
+        }
+        Console.WriteLine("min: {0}. Length={1}, Index={2}", stack.Max().Item1, stack.Max().Item1.Length, stack.Max().Item2);
+    }
+    public static void Task2(string path)
     {
         Dictionary<char, char> pairs = new()
         {
@@ -12,10 +33,11 @@ public class Task
             {']', '['},
             {'}', '{'}
         };
-        var sampleTrue = "((s)[test])";
-        var sampleFalse = "()[]}";
-        Console.WriteLine(ValidateBrackets(pairs, sampleTrue));
-        Console.WriteLine(ValidateBrackets(pairs, sampleFalse));
+        foreach (var line in File.ReadLines(path))
+        {
+            var res = ValidateBrackets(pairs, line);
+            Console.WriteLine("{0} -> {1}", line, res >= 0 ? res + 1 : "YES");
+        }
     }
 
     public static void Task3()
@@ -55,14 +77,14 @@ public class Task
                 var (openBracket, index) = stack.Pop();
                 if (openBracket != pairs[data[i]])
                 {
-                    return index;
+                    return i;
                 }
             }
         }
 
         if (stack.Count != 0)
         {
-            return stack.Pop().Item1;
+            return stack.Pop().Item2;
         }
         
         return -1;

@@ -41,7 +41,6 @@ public class Queue<T>
             rear.next = newNode;
             rear = newNode;
         }
-
         size++;
     }
 

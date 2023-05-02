@@ -1,6 +1,8 @@
+using System.Collections;
+
 namespace cs_labs.lab12;
 
-public class Stack<T>
+public class Stack<T> : IEnumerable<T>
 {
     private List<T>  arr = new();
     private int p = 0;
@@ -24,7 +26,7 @@ public class Stack<T>
             throw new IndexOutOfRangeException();
         }
 
-        return arr[p];
+        return arr[p - 1];
     }
 
     public void Push(T data)
@@ -39,28 +41,43 @@ public class Stack<T>
             arr[p++] = data;
         }
     }
-    
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        for (int i = p - 1; i >= 0; i--)
+        {
+            yield return arr[i];
+        }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 }
 
-class MaxStack<T> where T : IComparable<T>
+class OrderedStack<T, U>: IEnumerable<T>  
+    where U : IComparer<T>
 {
     private Stack<T> stack;
-    private Stack<T> maxStack;
+    private Stack<T> orderedStack;
+    private U Comparator;
     public int Count => stack.Count;
 
-    public MaxStack()
+    public OrderedStack(U comparer)
     {
         stack = new Stack<T>();
-        maxStack = new Stack<T>();
+        orderedStack = new Stack<T>();
+        Comparator = comparer;
     }
 
     public void Push(T item)
     {
         stack.Push(item);
 
-        if (maxStack.Count == 0 || item.CompareTo(maxStack.Peek()) >= 0)
+        if (orderedStack.Count == 0 || Comparator.Compare(item, orderedStack.Peek()) >= 0)
         {
-            maxStack.Push(item);
+            orderedStack.Push(item);
         }
     }
 
@@ -71,9 +88,9 @@ class MaxStack<T> where T : IComparable<T>
 
         T item = stack.Pop();
 
-        if (item.CompareTo(maxStack.Peek()) == 0)
+        if (Comparator.Compare(item, orderedStack.Peek()) == 0)
         {
-            maxStack.Pop();
+            orderedStack.Pop();
         }
 
         return item;
@@ -81,10 +98,19 @@ class MaxStack<T> where T : IComparable<T>
 
     public T Max()
     {
-        if (maxStack.Count == 0)
+        if (orderedStack.Count == 0)
             throw new InvalidOperationException("Stack is empty");
 
-        return maxStack.Peek();
+        return orderedStack.Peek();
     }
     
+    public IEnumerator<T> GetEnumerator()
+    {
+        return stack.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 }
